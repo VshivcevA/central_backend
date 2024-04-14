@@ -4,7 +4,7 @@ const apiRouter = express.Router()
 const climateRouter = require('./climateRouter/climateRouter')
 
 apiRouter.use((req, res, next)=>{
-    console.log('api')
+    // console.log('api')
     next()
 })
 apiRouter.use('/climate', climateRouter)

@@ -1,14 +1,8 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const postgres = require('postgres');
 const rootRouter =  require('./router/rootRouter');
-// import climateReducer from '../features/climateRender/climateSlice'
 const scheduleEvery10Minutes = require("./shedule/scheduleEvery10Minutes");
-
-
-const {resolve} = require("path");
-const {response} = require("express");
 
 app.use(bodyParser.json());
 

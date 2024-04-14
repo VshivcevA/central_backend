@@ -1,19 +1,12 @@
 const express = require('express')
-const postgres = require("postgres");
 const climateRouter = express.Router()
+const sql = require("../../../conf/postgresConf");
 
 climateRouter.use((req, res, next)=>{
-    console.log('climate')
+    // console.log('climate')
     next()
 })
 
-const sql = postgres({
-    host: '192.168.10.49',             // Postgres ip address[s] or domain name[s]
-    port: 5432,                              // Postgres server port[s]
-    database: 'postgres',                    // Name of database to connect to
-    username: 'postgres',                      // Username of database user
-    password: 'postgres',                      // Password of database user
-})
 const table = "climate_1"
 
 climateRouter.get('/1', async (req, res) => {
