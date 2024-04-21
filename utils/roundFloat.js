@@ -1,9 +1,13 @@
 function roundFloat(data) {
     for (let key in data) {
-        if (key === "pressure") {
-            data[key] = Math.round(data[key] * 10) / 1000
+        if (key === "voltage") {
+            data[key] = data[key].toFixed(2)
+        } else if (key === "pressure") {
+            data[key] = data[key].toFixed(1) / 100
+        } else {
+            data[key] = data[key].toFixed(1)
         }
-        data[key] = Math.round(data[key] * 10) / 10
+        data[key] = Number(data[key])
     }
     return data
 }
