@@ -1,4 +1,5 @@
 const getBme280Data = require("../devices/esp32_1/getBme280Data");
+const getNanoBle33data = require("../devices/nanoBle33/getNanoBle33data");
 
 function scheduleEvery10Minutes() {
     const schedule = require('node-schedule');
@@ -8,6 +9,7 @@ function scheduleEvery10Minutes() {
     const job = schedule.scheduleJob(rule, function () {
         console.log('--- schedule')
         getBme280Data()
+        // getNanoBle33data()
     });
 }
 

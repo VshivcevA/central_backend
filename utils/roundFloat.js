@@ -3,7 +3,7 @@ function roundFloat(data) {
         if (key === "voltage") {
             data[key] = data[key].toFixed(2)
         } else if (key === "pressure") {
-            data[key] = data[key].toFixed(1) / 100
+            data[key] = (data[key] / 100).toFixed(1)
         } else {
             data[key] = data[key].toFixed(1)
         }
@@ -12,3 +12,4 @@ function roundFloat(data) {
     return data
 }
 module.exports = roundFloat
+//todo переделать на свич
