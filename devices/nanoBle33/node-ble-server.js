@@ -19,7 +19,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-
 const nanoBle33Config = {
     ina226: {
         service: {
@@ -109,8 +108,17 @@ app.get('/', function (req, res) {
             }
             await peripheral.disconnectAsync()
             res.json(nanoBle33Ina226Data)
+            noble.removeAllListeners();
+            // console.log('process.exit(0)')
             process.exit(0);
+
         });
+        // console.log('set')
+        setTimeout(()=>{
+            noble.removeAllListeners();
+            // console.log('exit')
+            process.exit(0);
+        },1000*60*1.5)
 })
 
 app.listen(3080, () => console.log('server BLE started'));
