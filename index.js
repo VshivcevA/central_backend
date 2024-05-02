@@ -23,6 +23,7 @@ app.use(function (req, res, next) {
 
 app.use('/', rootRouter)
 
-// scheduleEvery10Minutes()
-
+if (process.env.NODE_ENV === 'production') {
+    scheduleEvery10Minutes()
+}
 app.listen(3000, () => console.log('server started'));
