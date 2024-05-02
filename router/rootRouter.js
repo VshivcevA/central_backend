@@ -6,6 +6,6 @@ rootRouter.use((req, res, next)=> {
     // console.log("router")
     next()
 })
-rootRouter.use('/api', apiRouter)
+rootRouter.use('/api/v1', apiRouter)
 
 module.exports = rootRouter;
