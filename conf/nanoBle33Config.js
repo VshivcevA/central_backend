@@ -31,4 +31,4 @@ const nanoBle33Config = {
         }
     },
 }
-export default nanoBle33Config
+module.exports = nanoBle33Config
