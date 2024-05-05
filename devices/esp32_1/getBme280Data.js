@@ -2,7 +2,7 @@ const roundFloat = require("../../utils/roundFloat");
 const insertInto = require("../../utils/insertInto");
 
 async function getBme280Data() {
-    const host = '192.168.10.46'
+    const host = process.env.ESP1_HOST
     const path = '/bme280'
     const url = `http://${host}${path}`
     const table = "climate_1"

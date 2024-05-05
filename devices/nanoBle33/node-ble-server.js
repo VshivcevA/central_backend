@@ -1,61 +1,23 @@
+import nanoBle33Config from "../../conf/nanoBle33Config";
 const express = require('express');
-const app = express();
+const bleApp = express();
 const noble = require("@abandonware/noble");
 const roundFloat = require("../../utils/roundFloat");
 const insertInto = require("../../utils/insertInto");
 
-app.use(function (req, res, next) {
-    // Website you wish to allow to connect
+bleApp.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', "*");
-    // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    // Request headers you wish to allow
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
     res.setHeader('Access-Control-Allow-Credentials', "true");
     res.setHeader('Access-Control-Allow-Private-Network', "true");
-    // Pass to next layer of middleware
     next();
 });
 
-const nanoBle33Config = {
-    ina226: {
-        service: {
-            UUID: '180f',
-        },
-        characteristics: {
-            voltage: {
-                name: 'voltage',
-                UUID: '85891a10454f6dbd7cfff590e0ac1ce9'
-                // UUID: '85891a-1045-4f6d-bd7c-1f590e0ac1ce9'
-            }
-        }
-    },
-    bme280: {
-        service: {
-            UUID: '1b21764b490743caae2d6a6281725975',
-        },
-        characteristics: {
-            temperature: {
-                name: 'temperature',
-                UUID: '8e44a0e83b4b4b2581179a9dd06abce3',
-            },
-            pressure: {
-                name: 'pressure',
-                UUID: '7dcfa0a4b6184fc7a2481aeb9b7fda18'
-            },
-            humidity: {
-                name: 'humidity',
-                UUID: 'dd093747ed37436cb1740f9818a474c9'
-            }
-        }
-    },
-}
 
 const nanoBle33Ina226Data = {}
 const nanoBle33Bme280Data = {}
-app.get('/', function (req, res) {
+bleApp.get('/', function (req, res) {
 
         noble.on('stateChange', async (state) => {
             if (state === 'poweredOn') {
@@ -118,4 +80,4 @@ app.get('/', function (req, res) {
         },1000*60*3)
 })
 
-app.listen(3080, () => console.log('server BLE started'));
+bleApp.listen(3080, () => console.log('server BLE started'));
