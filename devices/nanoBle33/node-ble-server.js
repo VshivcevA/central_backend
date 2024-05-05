@@ -1,4 +1,4 @@
-import nanoBle33Config from "../../conf/nanoBle33Config";
+const nanoBle33Config = require("../../conf/nanoBle33Config");
 const express = require('express');
 const bleApp = express();
 const noble = require("@abandonware/noble");
