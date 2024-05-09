@@ -1,10 +1,7 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
 const rootRouter =  require('./router/rootRouter');
 const scheduleEvery10Minutes = require("./shedule/scheduleEvery10Minutes");
-
-app.use(bodyParser.json());
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', "*");

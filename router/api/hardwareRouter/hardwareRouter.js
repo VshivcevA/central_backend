@@ -3,10 +3,8 @@ const hardwareRouter = express.Router()
 const sql = require("../../../conf/postgresConf");
 
 hardwareRouter.use((req, res, next)=>{
-    // console.log('climate')
     next()
 })
-
 
 hardwareRouter.get('/nanoble33battery', async (req, res) => {
     //todo пока только для батареи
