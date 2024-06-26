@@ -1,6 +1,7 @@
 const express = require('express')
 const hardwareRouter = express.Router()
 const sql = require("../../../conf/postgresConf");
+const systemInformation = require("./systemInformation");
 
 hardwareRouter.use((req, res, next)=>{
     next()
@@ -20,6 +21,10 @@ hardwareRouter.get('/nanoble33battery', async (req, res) => {
             timestamp >= current_timestamp - interval '1' day
     `
     res.json(data);
+})
+
+hardwareRouter.get('/systemInfo', async (req, res) => {
+    res.json(await systemInformation());
 })
 
 

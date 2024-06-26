@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const rootRouter =  require('./router/rootRouter');
 const scheduleEvery10Minutes = require("./shedule/scheduleEvery10Minutes");
+const systemInformation = require("./router/api/hardwareRouter/systemInformation");
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', "*");
@@ -14,6 +15,9 @@ app.use(function (req, res, next) {
 
 app.use('/', rootRouter)
 
+if (process.env.NODE_ENV !== 'production') {
+    systemInformation()
+}
 if (process.env.NODE_ENV === 'production') {
     scheduleEvery10Minutes()
 }
