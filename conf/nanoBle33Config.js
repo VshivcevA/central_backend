@@ -7,7 +7,6 @@ const nanoBle33Config = {
             voltage: {
                 name: 'voltage',
                 UUID: '85891a10454f6dbd7cfff590e0ac1ce9'
-                // UUID: '85891a-1045-4f6d-bd7c-1f590e0ac1ce9'
             }
         }
     },

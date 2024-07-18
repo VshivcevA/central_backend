@@ -26,7 +26,6 @@ bleApp.get('/', function (req, res) {
         });
 
         noble.on('discover', async (peripheral) => {
-            console.log('discover')
             await noble.stopScanningAsync();
             await peripheral.connectAsync();
             const {services, characteristics} = await peripheral.discoverSomeServicesAndCharacteristicsAsync([nanoBle33Config.ina226.service.UUID, nanoBle33Config.bme280.service.UUID], [nanoBle33Config.ina226.characteristics.voltage.UUID, nanoBle33Config.bme280.characteristics.temperature.UUID, nanoBle33Config.bme280.characteristics.humidity.UUID, nanoBle33Config.bme280.characteristics.pressure.UUID])
@@ -44,6 +43,7 @@ bleApp.get('/', function (req, res) {
                     roundFloat(nanoBle33Ina226Data)
                     const table = "nanoble33battery"
                     const columns = ['voltage']
+                    // console.log('nanoBle33Ina226Data',nanoBle33Ina226Data)
                     await insertInto(nanoBle33Ina226Data, table, columns)
                 }
 
@@ -75,6 +75,7 @@ bleApp.get('/', function (req, res) {
 
         });
         setTimeout(()=>{
+            console.log('setTimeout exit')
             noble.removeAllListeners();
             process.exit(0);
         },1000*60*3)
