@@ -1,7 +1,7 @@
 const si = require('systeminformation');
 
 async function systemInformation() {
-    let systemInfoData = {}
+    let systemInfoData = []
     // systemInfoData['uptime']= await si.time().uptime
     let valueObject = {
         cpu: '*',
