@@ -1,20 +1,24 @@
 const si = require('systeminformation');
+const getFixSystemInfoData = require("./getFixSystemInfoData");
 
 async function systemInformation() {
     let systemInfoData = []
     let valueObject = {
-        time:'current,uptime,timezone',
-        cpu: 'vendor,manufacturer,cores',
-        cpuCurrentSpeed:'*',
+        time:'current,uptime',
+
+        cpu: 'vendor,manufacturer',
         cpuTemperature:'main',
+        cpuCurrentSpeed:'*',
+        currentLoad:'currentLoad,cpus',
+
         mem: 'total,used,free,active,available,buffers,cached,buffcache,swaptotal,swapused',
         osInfo:'platform,distro,release,codename,kernel',
-        currentLoad:'currentLoad',
         disksIO:"*",
         fsSize:"*",
     }
     await si.get(valueObject)
         .then(result => systemInfoData = result);
-    return systemInfoData
+
+    return getFixSystemInfoData(systemInfoData)
 }
 module.exports = systemInformation;
