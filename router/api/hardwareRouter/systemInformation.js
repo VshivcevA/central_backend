@@ -5,15 +5,13 @@ async function systemInformation() {
     let systemInfoData = []
     let valueObject = {
         time:'current,uptime',
-
-        cpu: 'vendor,manufacturer',
         cpuTemperature:'main',
-        cpuCurrentSpeed:'*',
+        cpuCurrentSpeed:'avg,cores',
         currentLoad:'currentLoad,cpus',
 
         mem: 'total,used,free,active,available,buffers,cached,buffcache,swaptotal,swapused',
-        osInfo:'platform,distro,release,codename,kernel',
-        disksIO:"*",
+        // osInfo:'platform,distro,release,codename,kernel',
+        // disksIO:"*",
         fsSize:"*",
     }
     await si.get(valueObject)

@@ -2,20 +2,19 @@ const unixTimeToTime = require("../../../utils/unixTimeToTime");
 const byteToMegabyte = require("../../../utils/byteToMegabyte");
 let fixSystemInfoData = {}
 
+const maxFrequency = 2.4;
+
 function getFixSystemInfoData(systemInfoData) {
     fixSystemInfoData.time = {
-        'Current time': new Date(systemInfoData.time.current).toLocaleString('ru-RU'),
-        'Uptime': unixTimeToTime(systemInfoData.time.uptime)
+        'current time': new Date(systemInfoData.time.current).toLocaleString('ru-RU'),
+        uptime: unixTimeToTime(systemInfoData.time.uptime)
     }
 
     fixSystemInfoData.cpu = {
-        manufacturer: systemInfoData.cpu.manufacturer,
-        model: systemInfoData.cpu.vendor,
-        temperature: systemInfoData.cpuTemperature.main,
+        temperature: Math.floor(systemInfoData.cpuTemperature.main),
         load: Math.floor(systemInfoData.currentLoad.currentLoad),
         frequency:{
-            min:systemInfoData.cpuCurrentSpeed.min,
-            max:systemInfoData.cpuCurrentSpeed.max,
+            max:maxFrequency,
             avg:systemInfoData.cpuCurrentSpeed.avg,
         },
         cores: [],
@@ -38,11 +37,11 @@ function getFixSystemInfoData(systemInfoData) {
         available: byteToMegabyte(systemInfoData.fsSize[0].available),
         use: byteToMegabyte(systemInfoData.fsSize[0].use),
     }
-    for (let memKey in systemInfoData.disksIO) {
-        fixSystemInfoData.disk[memKey] = byteToMegabyte(systemInfoData.disksIO[memKey])
-    }
+    // for (let memKey in systemInfoData.disksIO) {
+    //     fixSystemInfoData.disk[memKey] = byteToMegabyte(systemInfoData.disksIO[memKey])
+    // }
 
-    fixSystemInfoData.os = systemInfoData.osInfo
+    // fixSystemInfoData.os = systemInfoData.osInfo
 
     return fixSystemInfoData
 }
